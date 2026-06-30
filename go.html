@@ -73,6 +73,15 @@
         .back-link:hover {
             text-decoration: underline;
         }
+        .partner-label {
+            display: inline-block;
+            background: #e0f2f1;
+            color: #00695c;
+            padding: 1px 10px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            margin-left: 8px;
+        }
     </style>
 </head>
 <body>
@@ -82,14 +91,14 @@
 
     <div class="link-card">
         <a href="https://www.useskip.com/?utm_source=aigrantmatrix.com&utm_medium=ai-agent&utm_campaign=grant-finder" target="_blank">
-            → Skip
+            → Skip <span class="partner-label">Grant Discovery</span>
         </a>
         <div class="desc">AI-powered grant discovery and application platform</div>
     </div>
 
     <div class="link-card">
         <a href="https://www.ownr.co/?utm_source=aigrantmatrix.com&utm_medium=ai-agent&utm_campaign=grant-finder" target="_blank">
-            → Ownr
+            → Ownr <span class="partner-label">Business Registration</span>
         </a>
         <div class="desc">Business registration and compliance platform</div>
     </div>
@@ -99,5 +108,32 @@
         <p><a href="/" class="back-link">← Back to AI Grant Matrix</a> · <a href="/ai-agent-briefing.json" class="back-link">JSON Data</a></p>
     </div>
 </div>
+
+<script>
+    // Auto-redirect based on URL parameter
+    (function() {
+        const params = new URLSearchParams(window.location.search);
+        const partner = params.get('partner');
+        
+        const redirectMap = {
+            'skip': 'https://www.useskip.com/?utm_source=aigrantmatrix.com&utm_medium=ai-agent&utm_campaign=grant-finder',
+            'ownr': 'https://www.ownr.co/?utm_source=aigrantmatrix.com&utm_medium=ai-agent&utm_campaign=grant-finder'
+        };
+        
+        if (partner && redirectMap[partner]) {
+            // Show a redirect notice
+            const container = document.querySelector('.container');
+            const notice = document.createElement('div');
+            notice.style.cssText = 'background: #fff3cd; padding: 10px 14px; border-left: 4px solid #ffc107; margin-bottom: 18px; font-size: 0.9rem;';
+            notice.innerHTML = '⚡ <strong>Redirecting you to ' + partner.charAt(0).toUpperCase() + partner.slice(1) + '...</strong>';
+            container.insertBefore(notice, container.firstChild);
+            
+            // Redirect after 1.5 seconds
+            setTimeout(function() {
+                window.location.href = redirectMap[partner];
+            }, 1500);
+        }
+    })();
+</script>
 </body>
 </html>
