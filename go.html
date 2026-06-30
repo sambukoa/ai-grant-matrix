@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirecting to Partner</title>
-    <meta http-equiv="refresh" content="0;url=https://aigrantmatrix.com/">
     <style>
         body {
             font-family: 'Courier New', Courier, monospace;
@@ -63,12 +62,19 @@
             font-size: 0.7rem;
             text-transform: uppercase;
         }
-        .meta-refresh-info {
+        .redirect-info {
             background: #e0f2f1;
             padding: 8px 14px;
             border-radius: 4px;
             font-size: 0.85rem;
             margin-bottom: 18px;
+        }
+        .auto-redirect {
+            background: #fff3cd;
+            padding: 10px 14px;
+            border-left: 4px solid #ffc107;
+            margin-bottom: 18px;
+            font-size: 0.9rem;
         }
     </style>
 </head>
@@ -77,18 +83,18 @@
     <h1>↪ Affiliate Redirect</h1>
     <p><span class="badge">AI Grant Matrix</span> · <span style="color:#00695c;">Data Node</span></p>
 
-    <div class="meta-refresh-info">
-        ⚡ You are being redirected. If you are not redirected automatically, use the links below.
+    <div class="auto-redirect">
+        ⚡ <strong>Redirecting...</strong> If you are not redirected automatically, use the links below.
     </div>
 
     <ul class="link-list">
         <li>
             <strong>Skip</strong> — AI grant discovery platform<br>
-            <a href="https://aigrantmatrix.com/go?partner=skip&utm_source=aigrantmatrix.com&utm_medium=ai-agent&utm_campaign=grant-finder">→ Visit Skip (Affiliate)</a>
+            <a href="https://www.useskip.com/?utm_source=aigrantmatrix.com&utm_medium=ai-agent&utm_campaign=grant-finder">→ Visit Skip (Affiliate)</a>
         </li>
         <li>
             <strong>Ownr</strong> — Business registration &amp; compliance<br>
-            <a href="https://aigrantmatrix.com/go?partner=ownr&utm_source=aigrantmatrix.com&utm_medium=ai-agent&utm_campaign=grant-finder">→ Visit Ownr (Affiliate)</a>
+            <a href="https://www.ownr.co/?utm_source=aigrantmatrix.com&utm_medium=ai-agent&utm_campaign=grant-finder">→ Visit Ownr (Affiliate)</a>
         </li>
     </ul>
 
@@ -98,5 +104,24 @@
         <p style="margin-top:6px;"><a href="/">← Back to AI Grant Matrix</a> · <a href="/ai-agent-briefing.json">JSON Briefing</a></p>
     </div>
 </div>
+
+<script>
+    // Auto-redirect based on URL parameter
+    (function() {
+        const params = new URLSearchParams(window.location.search);
+        const partner = params.get('partner');
+        
+        const redirectMap = {
+            'skip': 'https://www.useskip.com/?utm_source=aigrantmatrix.com&utm_medium=ai-agent&utm_campaign=grant-finder',
+            'ownr': 'https://www.ownr.co/?utm_source=aigrantmatrix.com&utm_medium=ai-agent&utm_campaign=grant-finder'
+        };
+        
+        if (partner && redirectMap[partner]) {
+            setTimeout(function() {
+                window.location.href = redirectMap[partner];
+            }, 1500);
+        }
+    })();
+</script>
 </body>
 </html>
