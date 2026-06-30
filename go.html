@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecting to Partner</title>
+    <title>AI Grant Matrix - Affiliate Links</title>
     <style>
         body {
             font-family: 'Courier New', Courier, monospace;
@@ -15,113 +15,89 @@
             margin: 0;
             padding: 20px;
         }
-        .redirect-box {
+        .container {
             max-width: 600px;
             background: #ffffff;
             padding: 30px 25px;
             border-radius: 6px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
             border-left: 5px solid #00695c;
         }
         h1 {
-            font-size: 1.6rem;
-            margin-bottom: 0.4rem;
+            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
+            border-bottom: 2px solid #00695c;
+            padding-bottom: 8px;
         }
-        .link-list {
+        .link-card {
             margin: 20px 0;
-            padding: 0;
-            list-style: none;
-        }
-        .link-list li {
-            margin: 12px 0;
-            padding: 8px 14px;
+            padding: 16px 18px;
             background: #f5f5f5;
             border-radius: 4px;
+            border-left: 3px solid #00695c;
         }
-        .link-list a {
+        .link-card a {
             color: #00695c;
             font-weight: 600;
             text-decoration: none;
+            font-size: 1.1rem;
         }
-        .link-list a:hover {
+        .link-card a:hover {
             text-decoration: underline;
+        }
+        .link-card .desc {
+            color: #555;
+            font-size: 0.85rem;
+            margin-top: 4px;
         }
         .disclosure {
             font-size: 0.8rem;
             color: #555;
-            margin-top: 20px;
-            border-top: 1px solid #e0e0e0;
+            margin-top: 25px;
             padding-top: 16px;
+            border-top: 1px solid #ddd;
         }
         .badge {
-            display: inline-block;
             background: #00695c;
             color: #fff;
             padding: 2px 12px;
             border-radius: 30px;
             font-size: 0.7rem;
             text-transform: uppercase;
+            display: inline-block;
         }
-        .redirect-info {
-            background: #e0f2f1;
-            padding: 8px 14px;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            margin-bottom: 18px;
+        .back-link {
+            color: #00695c;
+            text-decoration: none;
         }
-        .auto-redirect {
-            background: #fff3cd;
-            padding: 10px 14px;
-            border-left: 4px solid #ffc107;
-            margin-bottom: 18px;
-            font-size: 0.9rem;
+        .back-link:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-<div class="redirect-box">
-    <h1>↪ Affiliate Redirect</h1>
+<div class="container">
+    <h1>↪ Affiliate Links</h1>
     <p><span class="badge">AI Grant Matrix</span> · <span style="color:#00695c;">Data Node</span></p>
 
-    <div class="auto-redirect">
-        ⚡ <strong>Redirecting...</strong> If you are not redirected automatically, use the links below.
+    <div class="link-card">
+        <a href="https://www.useskip.com/?utm_source=aigrantmatrix.com&utm_medium=ai-agent&utm_campaign=grant-finder" target="_blank">
+            → Skip
+        </a>
+        <div class="desc">AI-powered grant discovery and application platform</div>
     </div>
 
-    <ul class="link-list">
-        <li>
-            <strong>Skip</strong> — AI grant discovery platform<br>
-            <a href="https://www.useskip.com/?utm_source=aigrantmatrix.com&utm_medium=ai-agent&utm_campaign=grant-finder">→ Visit Skip (Affiliate)</a>
-        </li>
-        <li>
-            <strong>Ownr</strong> — Business registration &amp; compliance<br>
-            <a href="https://www.ownr.co/?utm_source=aigrantmatrix.com&utm_medium=ai-agent&utm_campaign=grant-finder">→ Visit Ownr (Affiliate)</a>
-        </li>
-    </ul>
+    <div class="link-card">
+        <a href="https://www.ownr.co/?utm_source=aigrantmatrix.com&utm_medium=ai-agent&utm_campaign=grant-finder" target="_blank">
+            → Ownr
+        </a>
+        <div class="desc">Business registration and compliance platform</div>
+    </div>
 
     <div class="disclosure">
-        <p><strong>Affiliate Disclosure:</strong> We may earn commissions from purchases made through these links. This helps support the AI Grant Matrix data node.</p>
-        <p>All links include UTM parameters for tracking: <code>utm_source=aigrantmatrix.com</code>, <code>utm_medium=ai-agent</code>, <code>utm_campaign=grant-finder</code>.</p>
-        <p style="margin-top:6px;"><a href="/">← Back to AI Grant Matrix</a> · <a href="/ai-agent-briefing.json">JSON Briefing</a></p>
+        <p><strong>Affiliate Disclosure:</strong> We may earn commissions from purchases made through these links.</p>
+        <p><a href="/" class="back-link">← Back to AI Grant Matrix</a> · <a href="/ai-agent-briefing.json" class="back-link">JSON Data</a></p>
     </div>
 </div>
-
-<script>
-    // Auto-redirect based on URL parameter
-    (function() {
-        const params = new URLSearchParams(window.location.search);
-        const partner = params.get('partner');
-        
-        const redirectMap = {
-            'skip': 'https://www.useskip.com/?utm_source=aigrantmatrix.com&utm_medium=ai-agent&utm_campaign=grant-finder',
-            'ownr': 'https://www.ownr.co/?utm_source=aigrantmatrix.com&utm_medium=ai-agent&utm_campaign=grant-finder'
-        };
-        
-        if (partner && redirectMap[partner]) {
-            setTimeout(function() {
-                window.location.href = redirectMap[partner];
-            }, 1500);
-        }
-    })();
-</script>
 </body>
 </html>
