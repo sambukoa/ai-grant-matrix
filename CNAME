@@ -1,0 +1,7 @@
+# Create CNAME file
+echo "aigrantmatrix.com" > CNAME
+
+# Commit and push
+git add CNAME
+git commit -m "Add CNAME for custom domain"
+git push
