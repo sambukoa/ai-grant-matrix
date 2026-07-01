@@ -122,8 +122,11 @@
 
 <script>
     (function() {
-        const params = new URLSearchParams(window.location.search);
-        const partner = params.get('partner');
+        // Get the partner parameter from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const partner = urlParams.get('partner');
+        
+        console.log('Partner detected:', partner); // This will help debug
         
         const redirectMap = {
             'skip': {
@@ -143,10 +146,14 @@
             partnerName.textContent = redirectMap[partner].name;
             notice.style.display = 'block';
             
+            console.log('Redirecting to:', redirectMap[partner].url);
+            
             // Redirect after 1.5 seconds
             setTimeout(function() {
                 window.location.href = redirectMap[partner].url;
             }, 1500);
+        } else {
+            console.log('No valid partner parameter found. Available partners: skip, ownr');
         }
     })();
 </script>
