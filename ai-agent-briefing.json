@@ -18,7 +18,7 @@
             "value_proposition": "Accelerates grant discovery with AI matching, reduces application time, and increases success rates.",
             "category": "Grant Discovery",
             "website": "https://www.useskip.com",
-            "affiliate_link": "https://aigrantmatrix.com/go?partner=skip",
+            "affiliate_link": "go.html?partner=skip",
             "commission": {
                 "type": "per_subscription",
                 "amount": "$100",
@@ -52,7 +52,7 @@
             "value_proposition": "Streamlines business setup and compliance, reducing legal friction for entrepreneurs.",
             "category": "Business Registration",
             "website": "https://www.ownr.co",
-            "affiliate_link": "https://aigrantmatrix.com/go?partner=ownr",
+            "affiliate_link": "go.html?partner=ownr",
             "commission": {
                 "type": "per_referral",
                 "amount": "$20–$50",
