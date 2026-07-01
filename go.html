@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Grant Matrix - Affiliate Links</title>
+    <title>AI Grant Matrix - Redirecting...</title>
     <style>
         body {
             font-family: 'Courier New', Courier, monospace;
@@ -16,107 +16,70 @@
             padding: 20px;
         }
         .container {
-            max-width: 600px;
+            max-width: 500px;
             background: #ffffff;
             padding: 30px 25px;
             border-radius: 6px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.04);
             border-left: 5px solid #00695c;
+            text-align: center;
         }
         h1 {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             margin-bottom: 0.25rem;
-            border-bottom: 2px solid #00695c;
-            padding-bottom: 8px;
-        }
-        .link-card {
-            margin: 20px 0;
-            padding: 16px 18px;
-            background: #f5f5f5;
-            border-radius: 4px;
-            border-left: 3px solid #00695c;
-        }
-        .link-card a {
             color: #00695c;
-            font-weight: 600;
-            text-decoration: none;
-            font-size: 1.1rem;
         }
-        .link-card a:hover {
-            text-decoration: underline;
+        .spinner {
+            display: inline-block;
+            margin: 20px 0;
+            font-size: 2rem;
+            animation: spin 1s linear infinite;
         }
-        .link-card .desc {
-            color: #555;
-            font-size: 0.85rem;
-            margin-top: 4px;
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         .disclosure {
-            font-size: 0.8rem;
-            color: #555;
-            margin-top: 25px;
+            font-size: 0.7rem;
+            color: #888;
+            margin-top: 20px;
             padding-top: 16px;
             border-top: 1px solid #ddd;
-        }
-        .badge {
-            background: #00695c;
-            color: #fff;
-            padding: 2px 12px;
-            border-radius: 30px;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            display: inline-block;
         }
         .back-link {
             color: #00695c;
             text-decoration: none;
+            font-size: 0.8rem;
         }
         .back-link:hover {
             text-decoration: underline;
         }
-        .partner-label {
-            display: inline-block;
-            background: #e0f2f1;
-            color: #00695c;
-            padding: 1px 10px;
-            border-radius: 12px;
-            font-size: 0.7rem;
-            margin-left: 8px;
+        .manual-link {
+            margin: 15px 0;
+            padding: 12px;
+            background: #f5f5f5;
+            border-radius: 4px;
         }
-        .redirect-notice {
-            background: #fff3cd;
-            padding: 10px 14px;
-            border-left: 4px solid #ffc107;
-            margin-bottom: 18px;
-            font-size: 0.9rem;
+        .manual-link a {
+            color: #00695c;
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <h1>↪ Affiliate Links</h1>
-    <p><span class="badge">AI Grant Matrix</span> · <span style="color:#00695c;">Data Node</span></p>
+    <h1>↪ Redirecting...</h1>
+    <div class="spinner">⟳</div>
+    <p style="font-size:0.9rem; color:#555;">Taking you to the partner site</p>
 
-    <div id="redirectNotice" class="redirect-notice" style="display:none;">
-        ⚡ <strong>Redirecting you to <span id="partnerName"></span>...</strong>
-    </div>
-
-    <div class="link-card">
-        <a href="https://www.useskip.com/?utm_source=aigrantmatrix.com&utm_medium=ai-agent&utm_campaign=grant-finder" target="_blank" id="skipLink">
-            → Skip <span class="partner-label">Grant Discovery</span>
-        </a>
-        <div class="desc">AI-powered grant discovery and application platform</div>
-    </div>
-
-    <div class="link-card">
-        <a href="https://www.ownr.co/?utm_source=aigrantmatrix.com&utm_medium=ai-agent&utm_campaign=grant-finder" target="_blank" id="ownrLink">
-            → Ownr <span class="partner-label">Business Registration</span>
-        </a>
-        <div class="desc">Business registration and compliance platform</div>
+    <div class="manual-link">
+        <strong>Not redirecting?</strong><br>
+        <a href="#" id="directLink">Click here to continue</a>
     </div>
 
     <div class="disclosure">
         <p><strong>Affiliate Disclosure:</strong> We may earn commissions from purchases made through these links.</p>
-        <p><a href="index.html" class="back-link">← Back to AI Grant Matrix</a> · <a href="ai-agent-briefing.json" class="back-link">JSON Data</a></p>
+        <p><a href="index.html" class="back-link">← Back to AI Grant Matrix</a></p>
     </div>
 </div>
 
@@ -126,7 +89,7 @@
         const urlParams = new URLSearchParams(window.location.search);
         const partner = urlParams.get('partner');
         
-        console.log('Partner detected:', partner); // This will help debug
+        console.log('Partner detected:', partner);
         
         const redirectMap = {
             'skip': {
@@ -140,20 +103,29 @@
         };
         
         if (partner && redirectMap[partner]) {
-            // Show redirect notice
-            const notice = document.getElementById('redirectNotice');
-            const partnerName = document.getElementById('partnerName');
-            partnerName.textContent = redirectMap[partner].name;
-            notice.style.display = 'block';
+            const targetUrl = redirectMap[partner].url;
             
-            console.log('Redirecting to:', redirectMap[partner].url);
+            // Set the manual link
+            document.getElementById('directLink').href = targetUrl;
+            document.getElementById('directLink').textContent = 'Go to ' + redirectMap[partner].name;
             
-            // Redirect after 1.5 seconds
-            setTimeout(function() {
-                window.location.href = redirectMap[partner].url;
-            }, 1500);
+            // INSTANT redirect (no delay)
+            window.location.href = targetUrl;
         } else {
-            console.log('No valid partner parameter found. Available partners: skip, ownr');
+            // No valid partner - show error
+            document.querySelector('.container').innerHTML = `
+                <h1>⚠️ No Partner Specified</h1>
+                <p style="color:#555;">Please use one of these links:</p>
+                <div class="manual-link">
+                    <a href="go.html?partner=skip">→ Skip (Grant Discovery)</a>
+                </div>
+                <div class="manual-link">
+                    <a href="go.html?partner=ownr">→ Ownr (Business Registration)</a>
+                </div>
+                <div class="disclosure">
+                    <p><a href="index.html" class="back-link">← Back to AI Grant Matrix</a></p>
+                </div>
+            `;
         }
     })();
 </script>
