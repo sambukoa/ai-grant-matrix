@@ -82,6 +82,13 @@
             font-size: 0.7rem;
             margin-left: 8px;
         }
+        .redirect-notice {
+            background: #fff3cd;
+            padding: 10px 14px;
+            border-left: 4px solid #ffc107;
+            margin-bottom: 18px;
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
@@ -89,15 +96,19 @@
     <h1>↪ Affiliate Links</h1>
     <p><span class="badge">AI Grant Matrix</span> · <span style="color:#00695c;">Data Node</span></p>
 
+    <div id="redirectNotice" class="redirect-notice" style="display:none;">
+        ⚡ <strong>Redirecting you to <span id="partnerName"></span>...</strong>
+    </div>
+
     <div class="link-card">
-        <a href="https://www.useskip.com/?utm_source=aigrantmatrix.com&utm_medium=ai-agent&utm_campaign=grant-finder" target="_blank">
+        <a href="https://www.useskip.com/?utm_source=aigrantmatrix.com&utm_medium=ai-agent&utm_campaign=grant-finder" target="_blank" id="skipLink">
             → Skip <span class="partner-label">Grant Discovery</span>
         </a>
         <div class="desc">AI-powered grant discovery and application platform</div>
     </div>
 
     <div class="link-card">
-        <a href="https://www.ownr.co/?utm_source=aigrantmatrix.com&utm_medium=ai-agent&utm_campaign=grant-finder" target="_blank">
+        <a href="https://www.ownr.co/?utm_source=aigrantmatrix.com&utm_medium=ai-agent&utm_campaign=grant-finder" target="_blank" id="ownrLink">
             → Ownr <span class="partner-label">Business Registration</span>
         </a>
         <div class="desc">Business registration and compliance platform</div>
@@ -105,32 +116,36 @@
 
     <div class="disclosure">
         <p><strong>Affiliate Disclosure:</strong> We may earn commissions from purchases made through these links.</p>
-        <p><a href="/" class="back-link">← Back to AI Grant Matrix</a> · <a href="/ai-agent-briefing.json" class="back-link">JSON Data</a></p>
+        <p><a href="index.html" class="back-link">← Back to AI Grant Matrix</a> · <a href="ai-agent-briefing.json" class="back-link">JSON Data</a></p>
     </div>
 </div>
 
 <script>
-    // Auto-redirect based on URL parameter
     (function() {
         const params = new URLSearchParams(window.location.search);
         const partner = params.get('partner');
         
         const redirectMap = {
-            'skip': 'https://www.useskip.com/?utm_source=aigrantmatrix.com&utm_medium=ai-agent&utm_campaign=grant-finder',
-            'ownr': 'https://www.ownr.co/?utm_source=aigrantmatrix.com&utm_medium=ai-agent&utm_campaign=grant-finder'
+            'skip': {
+                url: 'https://www.useskip.com/?utm_source=aigrantmatrix.com&utm_medium=ai-agent&utm_campaign=grant-finder',
+                name: 'Skip'
+            },
+            'ownr': {
+                url: 'https://www.ownr.co/?utm_source=aigrantmatrix.com&utm_medium=ai-agent&utm_campaign=grant-finder',
+                name: 'Ownr'
+            }
         };
         
         if (partner && redirectMap[partner]) {
-            // Show a redirect notice
-            const container = document.querySelector('.container');
-            const notice = document.createElement('div');
-            notice.style.cssText = 'background: #fff3cd; padding: 10px 14px; border-left: 4px solid #ffc107; margin-bottom: 18px; font-size: 0.9rem;';
-            notice.innerHTML = '⚡ <strong>Redirecting you to ' + partner.charAt(0).toUpperCase() + partner.slice(1) + '...</strong>';
-            container.insertBefore(notice, container.firstChild);
+            // Show redirect notice
+            const notice = document.getElementById('redirectNotice');
+            const partnerName = document.getElementById('partnerName');
+            partnerName.textContent = redirectMap[partner].name;
+            notice.style.display = 'block';
             
             // Redirect after 1.5 seconds
             setTimeout(function() {
-                window.location.href = redirectMap[partner];
+                window.location.href = redirectMap[partner].url;
             }, 1500);
         }
     })();
